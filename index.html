@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Makine Öğrenimi Modeli Testi</title>
+</head>
+<body>
+    <h1>Metin Sınıflandırma</h1>
+    <textarea id="textInput"></textarea>
+    <button onclick="predict()">Tahmin Et</button>
+    <p id="result"></p>
+
+    <script>
+        function predict() {
+            var text = document.getElementById('textInput').value;
+            fetch('/predict', {
+                method: 'POST',
+                body: JSON.stringify({text: text}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(data => document.getElementById('result').innerText = data.prediction);
+        }
+    </script>
+</body>
+</html>
