@@ -11,7 +11,7 @@ model = joblib.load('text_classifier.model')
 def predict():
     data = request.get_json(force=True)
     predictions = model.predict([data['text']])
-    return jsonify({'prediction': predictions[0]})
+    return jsonify({'prediction': int(predictions[0])})
 
 @app.route('/')
 def home():
